@@ -1,17 +1,33 @@
-package com.backend.java.user.api.dto;
+package com.backend.java.user.api.model;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-import com.backend.java.user.api.model.User;
+import com.backend.java.user.api.dto.UserApiDTO;
 
-public class UserApiDTO {
+@Entity
+public class User {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 	private String name;
 	private String cpf;
 	private String address;
 	private String email;
 	private String telephone;
 	private Date dateRegistration;
+	
+	public long getId() {
+		return id;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	public String getName() {
 		return name;
@@ -61,18 +77,19 @@ public class UserApiDTO {
 		this.dateRegistration = dateRegistration;
 	}
 	
-	public static UserApiDTO convert(User user) {
+	public static User convert(UserApiDTO userApiDTO) {
 		
-		UserApiDTO userApiDTO = new UserApiDTO();
+		User user = new User();
 		
-		userApiDTO.setName(user.getName());
-		userApiDTO.setAddress(user.getAddress());
-		userApiDTO.setCpf(user.getCpf());
-		userApiDTO.setEmail(user.getEmail());
-		userApiDTO.setTelephone(user.getTelephone());
-		userApiDTO.setDateRegistration(user.getDateRegistration());
+		user.setName(userApiDTO.getName());
+		user.setAddress(userApiDTO.getAddress());
+		user.setCpf(userApiDTO.getCpf());
+		user.setEmail(userApiDTO.getEmail());
+		user.setTelephone(userApiDTO.getTelephone());
+		user.setDateRegistration(userApiDTO.getDateRegistration());
 		
-		return userApiDTO;
+		return user;
 		
 	}
+
 }
