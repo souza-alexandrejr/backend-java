@@ -7,5 +7,5 @@ create table users.user (
 	address varchar(100) not null,
 	email varchar(100) not null,
 	telephone varchar(100) not null,
-	dataRegistration timestamp not null
+	dataRegistration datetime not null
 );

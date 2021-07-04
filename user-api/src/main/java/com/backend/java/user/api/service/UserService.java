@@ -49,7 +49,7 @@ public class UserService {
 		return null;
 	}
 	
-	private UserApiDTO findByCpf(String cpf) {
+	public UserApiDTO findByCpf(String cpf) {
 		User user = userRepository.findByCpf(cpf);
 		
 		if (user != null) {
@@ -59,7 +59,7 @@ public class UserService {
 		return null;
 	}
 	
-	private List<UserApiDTO> queryByName(String name) {
+	public List<UserApiDTO> queryByName(String name) {
 		List<User> users = userRepository.queryByNameLike(name);
 		
 		return users
