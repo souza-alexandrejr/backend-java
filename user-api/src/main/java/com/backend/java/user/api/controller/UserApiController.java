@@ -31,11 +31,6 @@ public class UserApiController {
 		return users;
 	}
 
-	@GetMapping("/users/{id}")
-	public UserApiDTO getUserById(@PathVariable long id) {
-		return userService.findById(id);
-	}
-
 	@GetMapping("/users/{cpf}")
 	public UserApiDTO getUserByCpf(@PathVariable String cpf) {
 		return userService.findByCpf(cpf);
@@ -48,13 +43,14 @@ public class UserApiController {
 
 	@PostMapping("/users")
 	public UserApiDTO insertUser(@RequestBody UserApiDTO userApiDTO) {
+		userApiDTO.setDateRegistration(new Date());
 		return userService.save(userApiDTO);
 	}
 
-	@PutMapping("/users/{id}")
-	public UserApiDTO updateUserById(@PathVariable long id, @RequestBody UserApiDTO userApiDTO) {
-		UserApiDTO user = userService.findById(id);
-
+	@PutMapping("/users/{cpf}")
+	public UserApiDTO updateUserByCpf(@PathVariable String cpf, @RequestBody UserApiDTO userApiDTO) {
+		UserApiDTO user = userService.findByCpf(cpf);
+		
 		user.setName(userApiDTO.getName());
 		user.setCpf(userApiDTO.getCpf());
 		user.setAddress(userApiDTO.getAddress());
@@ -62,12 +58,16 @@ public class UserApiController {
 		user.setTelephone(userApiDTO.getTelephone());
 		user.setDateRegistration(new Date());
 
+		userService.update(user);
+		
 		return user;
 	}
 
-	@DeleteMapping("/users/{id}")
-	public UserApiDTO removeUserById(@PathVariable long id) {
-		return userService.delete(id);
+	@DeleteMapping("/users/{cpf}")
+	public UserApiDTO removeUserByCpf(@PathVariable String cpf) {
+		UserApiDTO user = userService.findByCpf(cpf);
+		
+		return userService.delete(user);
 	}
 
 }

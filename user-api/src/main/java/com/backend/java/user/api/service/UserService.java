@@ -1,7 +1,7 @@
 package com.backend.java.user.api.service;
 
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,27 +23,34 @@ public class UserService {
 				.collect(Collectors.toList());
 	}
 	
-	public UserApiDTO findById(long userId) {
-		Optional<User> user = userRepository.findById(userId);
-		
-		if (user.isPresent()) {
-			return UserApiDTO.convert(user.get());
-		}
-		
-		return null;
-	}
-	
 	public UserApiDTO save(UserApiDTO userApiDTO) {
 		User user = userRepository.save(User.convert(userApiDTO));
 		
 		return UserApiDTO.convert(user);
 	}
 	
-	public UserApiDTO delete(long userId) {
-		Optional<User> user = userRepository.findById(userId);
+	public UserApiDTO update(UserApiDTO userApiDTO) {
+		User user = userRepository.findByCpf(userApiDTO.getCpf());
+
+		if (user != null) {
+			user.setName(userApiDTO.getName());
+			user.setCpf(userApiDTO.getCpf());
+			user.setAddress(userApiDTO.getAddress());
+			user.setEmail(userApiDTO.getEmail());
+			user.setTelephone(userApiDTO.getTelephone());
+			user.setDateRegistration(new Date());
+			
+			userRepository.save(user);
+		}
 		
-		if (user.isPresent()) {
-			userRepository.delete(user.get());
+		return UserApiDTO.convert(user);
+	}
+	
+	public UserApiDTO delete(UserApiDTO userApiDTO) {
+		User user = userRepository.findByCpf(userApiDTO.getCpf());
+		
+		if (user != null) {
+			userRepository.delete(user);
 		}
 		
 		return null;
