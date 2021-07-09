@@ -51,23 +51,27 @@ public class UserApiController {
 	public UserApiDTO updateUserByCpf(@PathVariable String cpf, @RequestBody UserApiDTO userApiDTO) {
 		UserApiDTO user = userService.findByCpf(cpf);
 		
-		user.setName(userApiDTO.getName());
-		user.setCpf(userApiDTO.getCpf());
-		user.setAddress(userApiDTO.getAddress());
-		user.setEmail(userApiDTO.getEmail());
-		user.setTelephone(userApiDTO.getTelephone());
-		user.setDateRegistration(new Date());
-
-		userService.update(user);
+		if (user != null) {
+			user.setName(userApiDTO.getName());
+			user.setCpf(userApiDTO.getCpf());
+			user.setAddress(userApiDTO.getAddress());
+			user.setEmail(userApiDTO.getEmail());
+			user.setTelephone(userApiDTO.getTelephone());
+			user.setDateRegistration(new Date());
+	
+			userService.update(user);
+		}
 		
 		return user;
 	}
 
 	@DeleteMapping("/users/{cpf}")
-	public UserApiDTO removeUserByCpf(@PathVariable String cpf) {
+	public void removeUserByCpf(@PathVariable String cpf) {
 		UserApiDTO user = userService.findByCpf(cpf);
 		
-		return userService.delete(user);
+		if (user != null) {
+			userService.delete(user);
+		}
 	}
 
 }
