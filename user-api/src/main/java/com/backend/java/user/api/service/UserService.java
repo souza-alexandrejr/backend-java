@@ -46,14 +46,12 @@ public class UserService {
 		return UserApiDTO.convert(user);
 	}
 	
-	public UserApiDTO delete(UserApiDTO userApiDTO) {
+	public void delete(UserApiDTO userApiDTO) {
 		User user = userRepository.findByCpf(userApiDTO.getCpf());
 		
 		if (user != null) {
 			userRepository.delete(user);
 		}
-		
-		return null;
 	}
 	
 	public UserApiDTO findByCpf(String cpf) {
