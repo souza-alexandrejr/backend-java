@@ -1,4 +1,4 @@
-package com.backend.java.productapi;
+package com.backend.java.product.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
