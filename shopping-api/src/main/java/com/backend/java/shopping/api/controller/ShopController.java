@@ -1,13 +1,16 @@
 package com.backend.java.shopping.api.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,9 +20,6 @@ import com.backend.java.shopping.api.service.ShopService;
 @RestController
 public class ShopController {
 
-	@Autowired
-	private ShopService shopService;
-	
 	@GetMapping("/")
 	public String getMessage() {
 		return "Shopping API Project";
@@ -49,11 +49,36 @@ public class ShopController {
 	}
 	
 	@PostMapping("/shopping")
-	public ShopDTO newShop(@Valid @RequestBody ShopDTO shopDTO) {
+	public ShopDTO insertShop(@Valid @RequestBody ShopDTO shopDTO) {
 		return shopService.save(shopDTO);
 	}
 	
-	// PUT Method
+	@PutMapping("/shopping/{id}")
+	public ShopDTO updateShop(@PathVariable long id, 
+							  @Valid @RequestBody ShopDTO shopDTO) {
+		ShopDTO shop = shopService.findById(id);
+		
+		if (shop != null) {
+			shop.setDate(new Date());
+			shop.setItems(shopDTO.getItems());
+			shop.setUserIdentifier(shopDTO.getUserIdentifier());
+			shop.setTotal(shopDTO.getTotal());
+			
+			shopService.update(shop);
+		}
+		
+		return shop;
+	}
 	
-	// DELETE Method
+	@DeleteMapping("/shopping/{id}")
+	public void deleteShop(@PathVariable long id) {
+		ShopDTO shop = shopService.findById(id);
+		
+		if (shop != null) {
+			shopService.delete(shop);
+		}
+	}
+	
+	@Autowired
+	private ShopService shopService;
 }

@@ -9,35 +9,35 @@ import com.backend.java.shopping.api.model.Item;
 @Embeddable
 public class ItemDTO {
 
-	@NotBlank
-	private String productIdentifier;
-	
-	@NotNull
-	private Float price;
+	public Float getPrice() {
+		return price;
+	}
 	
 	public String getProductIdentifier() {
 		return productIdentifier;
-	}
-	
-	public void setProductIdentifier(String productIdentifier) {
-		this.productIdentifier = productIdentifier;
-	}
-	
-	public Float getPrice() {
-		return price;
 	}
 	
 	public void setPrice(Float price) {
 		this.price = price;
 	}
 	
+	public void setProductIdentifier(String productIdentifier) {
+		this.productIdentifier = productIdentifier;
+	}
+	
 	public static ItemDTO convert(Item item) {
 		ItemDTO itemDTO = new ItemDTO();
 		
-		itemDTO.setProductIdentifier(item.getProductIdentifier());
 		itemDTO.setPrice(itemDTO.getPrice());
+		itemDTO.setProductIdentifier(item.getProductIdentifier());
 		
 		return itemDTO;
 	}
+	
+	@NotNull
+	private Float price;
+	
+	@NotBlank
+	private String productIdentifier;
 	
 }

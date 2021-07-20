@@ -1,26 +1,26 @@
 package com.backend.java.shopping.api.model;
 
+import javax.persistence.Embeddable;
+
 import com.backend.java.shopping.api.dto.ItemDTO;
 
+@Embeddable
 public class Item {
 
-	private String productIdentifier;
-	private Float price;
-	
-	public String getProductIdentifier() {
-		return productIdentifier;
-	}
-	
-	public void setProductIdentifier(String productIdentifier) {
-		this.productIdentifier = productIdentifier;
-	}
-	
 	public Float getPrice() {
 		return price;
 	}
 	
+	public String getProductIdentifier() {
+		return productIdentifier;
+	}
+
 	public void setPrice(Float price) {
 		this.price = price;
+	}
+	
+	public void setProductIdentifier(String productIdentifier) {
+		this.productIdentifier = productIdentifier;
 	}
 	
 	public static Item convert(ItemDTO itemDTO) {
@@ -31,4 +31,8 @@ public class Item {
 		
 		return item;
 	}
+	
+	private Float price;
+	private String productIdentifier;
+	
 }

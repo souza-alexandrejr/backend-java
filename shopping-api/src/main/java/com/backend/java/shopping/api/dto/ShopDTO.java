@@ -2,6 +2,7 @@ package com.backend.java.shopping.api.dto;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -10,57 +11,74 @@ import com.backend.java.shopping.api.model.Shop;
 
 public class ShopDTO {
 
-	@NotBlank
-	private String userIdentifier;
+	public Date getDate() {
+		return date;
+	}
 	
-	@NotNull
-	private float total;
+	public long getId() {
+		return id;
+	}
 
-	@NotNull
-	private Date date;
-	
-	@NotNull
-	private List<ItemDTO> items;
-	
+	public List<ItemDTO> getItems() {
+		return items;
+	}
+
 	public String getUserIdentifier() {
 		return userIdentifier;
 	}
-	
-	public void setUserIdentifier(String userIdentifier) {
-		this.userIdentifier = userIdentifier;
-	}
-	
+
 	public float getTotal() {
 		return total;
-	}
-	
-	public void setTotal(float total) {
-		this.total = total;
-	}
-	
-	public Date getDate() {
-		return date;
 	}
 	
 	public void setDate(Date date) {
 		this.date = date;
 	}
 	
-	public List<ItemDTO> getItems() {
-		return items;
+	public void setId(long id) {
+		this.id = id;
 	}
-	
+
 	public void setItems(List<ItemDTO> items) {
 		this.items = items;
 	}
-	
+
+	public void setUserIdentifier(String userIdentifier) {
+		this.userIdentifier = userIdentifier;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
 	public static ShopDTO convert(Shop shop) {
 		ShopDTO shopDTO = new ShopDTO();
 		
+		shopDTO.setDate(shop.getDate());
+		shopDTO.setId(shop.getId());
+		shopDTO.setItems(shop.getItems()
+							.stream()
+							.map(ItemDTO::convert)
+							.collect(Collectors.toList()));
 		shopDTO.setUserIdentifier(shop.getUserIdentifier());
 		shopDTO.setTotal(shop.getTotal());
 		
 		return shopDTO;
 	}
 	
+	@NotNull
+	private Date date;
+	
+	@NotNull
+	private long id;
+	
+	@NotNull
+	private List<ItemDTO> items;
+	
+	@NotBlank
+	private String userIdentifier;
+	
+	@NotNull
+	private float total;
+
 }

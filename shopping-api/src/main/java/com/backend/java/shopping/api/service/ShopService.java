@@ -10,14 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.backend.java.shopping.api.dto.ShopDTO;
 import com.backend.java.shopping.api.model.Shop;
+import com.backend.java.shopping.api.model.Item;
 import com.backend.java.shopping.api.repository.ShopRepository;
 
 @Service
 public class ShopService {
 
-	@Autowired
-	private ShopRepository shopRepository;
-	
 	public List<ShopDTO> getAll() {
 		List<Shop> shops = shopRepository.findAll();
 		return shops
@@ -65,4 +63,40 @@ public class ShopService {
 		shop = shopRepository.save(shop);
 		return ShopDTO.convert(shop);
 	}
+	
+	public ShopDTO update(ShopDTO shopDTO) {
+		Shop shop = shopRepository.findById(shopDTO.getId()).get();
+		
+		if (shop != null) {
+			
+			shop.setDate(new Date());
+			shop.setId(shopDTO.getId());
+			shop.setItems(shopDTO
+					.getItems()
+					.stream()
+					.map(Item::convert)
+					.collect(Collectors.toList()));
+			shop.setUserIdentifier(shopDTO.getUserIdentifier());
+			shop.setTotal(shopDTO
+					.getItems()
+					.stream()
+					.map(x -> x.getPrice())
+					.reduce((float) 0, Float::sum));
+			
+			shopRepository.save(shop);
+		}
+		
+		return ShopDTO.convert(shop);
+	}
+	
+	public void delete(ShopDTO shopDTO) {
+		Shop shop = shopRepository.findById(shopDTO.getId()).get();
+		
+		if (shop != null) {
+			shopRepository.delete(shop);
+		}
+	}
+	
+	@Autowired
+	private ShopRepository shopRepository;
 }

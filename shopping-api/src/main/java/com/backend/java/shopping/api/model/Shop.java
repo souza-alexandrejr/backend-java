@@ -18,71 +18,72 @@ import com.backend.java.shopping.api.dto.ShopDTO;
 @Entity(name = "shop")
 public class Shop {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-	private String userIdentifier;
-	private float total;
-	private Date date;
+	public Date getDate() {
+		return date;
+	}
 	
-	@ElementCollection(fetch = FetchType.EAGER)
-	@CollectionTable(name = "item",
-			joinColumns = @JoinColumn(name = "shop_id"))
-	private List<Item> items;
-
 	public long getId() {
 		return id;
+	}
+	
+	public List<Item> getItems() {
+		return items;
+	}
+	
+	public String getUserIdentifier() {
+		return userIdentifier;
+	}
+	
+	public float getTotal() {
+		return total;
+	}
+	
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	public void setId(long id) {
 		this.id = id;
 	}
 
-	public String getUserIdentifier() {
-		return userIdentifier;
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	public void setUserIdentifier(String userIdentifier) {
 		this.userIdentifier = userIdentifier;
 	}
 
-	public float getTotal() {
-		return total;
-	}
-
 	public void setTotal(float total) {
 		this.total = total;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-	
 	public static Shop convert(ShopDTO shopDTO) {
 		Shop shop = new Shop();
 		
-		shop.setUserIdentifier(shopDTO.getUserIdentifier());
-		shop.setTotal(shopDTO.getTotal());
 		shop.setDate(shopDTO.getDate());
 		shop.setItems(shopDTO
 				.getItems()
 				.stream()
 				.map(Item::convert)
 				.collect(Collectors.toList()));
+		shop.setUserIdentifier(shopDTO.getUserIdentifier());
+		shop.setTotal(shopDTO.getTotal());
 		
 		return shop;
 	}
+	
+	private Date date;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	@CollectionTable(name = "item", joinColumns = @JoinColumn(name = "shop_id"))
+	private List<Item> items;
+	
+	private String userIdentifier;
+	private float total;
 	
 }
