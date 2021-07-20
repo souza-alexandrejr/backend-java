@@ -17,9 +17,6 @@ import com.backend.java.user.api.service.UserService;
 @RestController
 public class UserController {
 
-	@Autowired
-	private UserService userService;
-
 	@GetMapping("/")
 	public String getMessage() {
 		return "User API Project";
@@ -73,5 +70,8 @@ public class UserController {
 			userService.delete(user);
 		}
 	}
+	
+	@Autowired
+	private UserService userService;
 
 }

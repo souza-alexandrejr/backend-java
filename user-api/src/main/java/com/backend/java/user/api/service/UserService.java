@@ -12,9 +12,6 @@ import com.backend.java.user.api.repository.UserRepository;
 @Service
 public class UserService {
 	
-	@Autowired
-	private UserRepository userRepository;
-	
 	public List<UserDTO> getAll() {
 		List<User> usuarios = userRepository.findAll();
 		return usuarios
@@ -72,5 +69,8 @@ public class UserService {
 				.map(UserDTO::convert)
 				.collect(Collectors.toList());
 	}
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 }

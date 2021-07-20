@@ -6,63 +6,55 @@ import com.backend.java.user.api.model.User;
 
 public class UserDTO {
 	
-	private String name;
-	private String cpf;
-	private String address;
-	private String email;
-	private String telephone;
-	private Date dateRegistration;
-	
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
+	public String getAddress() {
+		return address;
 	}
 	
 	public String getCpf() {
 		return cpf;
 	}
 	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	
-	public String getAddress() {
-		return address;
-	}
-	
-	public void setAddress(String address) {
-		this.address = address;
+	public Date getDateRegistration() {
+		return dateRegistration;
 	}
 	
 	public String getEmail() {
 		return email;
 	}
 	
-	public void setEmail(String email) {
-		this.email = email;
+	public String getName() {
+		return name;
 	}
 	
 	public String getTelephone() {
 		return telephone;
 	}
 	
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	
-	public Date getDateRegistration() {
-		return dateRegistration;
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-	
+
 	public void setDateRegistration(Date dateRegistration) {
 		this.dateRegistration = dateRegistration;
 	}
-	
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+
 	public static UserDTO convert(User user) {
-		
 		UserDTO userApiDTO = new UserDTO();
 		
 		userApiDTO.setName(user.getName());
@@ -73,6 +65,13 @@ public class UserDTO {
 		userApiDTO.setDateRegistration(user.getDateRegistration());
 		
 		return userApiDTO;
-		
 	}
+	
+	private String address;
+	private String cpf;
+	private Date dateRegistration;
+	private String email;
+	private String name;
+	private String telephone;
+	
 }
