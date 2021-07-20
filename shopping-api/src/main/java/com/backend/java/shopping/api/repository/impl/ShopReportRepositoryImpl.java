@@ -14,6 +14,7 @@ import com.backend.java.shopping.api.repository.ShopReportRepository;
 
 public class ShopReportRepositoryImpl implements ShopReportRepository {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Shop> getShopByFilters(Date startDate, Date endDate, Float minimumValue) {
 		
