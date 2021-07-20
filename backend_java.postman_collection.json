@@ -6,120 +6,271 @@
 	},
 	"item": [
 		{
-			"name": "Users",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User By CPF",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/users/90012345678",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"90012345678"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "New User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Carlos\",\n    \"cpf\": \"90012345678\",\n    \"address\": \"Street D\",\n    \"email\": \"carlos@email.com\",\n    \"telephone\": \"99876-5432\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "user-api",
+			"item": [
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/users",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete By CPF",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/users/90012345678",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"90012345678"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update User Data",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"name\": \"Carlos\",\n    \"cpf\": \"90012345678\",\n    \"address\": \"Street D\",\n    \"email\": \"carlos@email.com\",\n    \"telephone\": \"99876-5432\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "User By CPF",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/90012345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"90012345678"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "http://localhost:8080/users/90012345678",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"users",
-						"90012345678"
-					]
+				{
+					"name": "Insert User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Carlos\",\n    \"cpf\": \"90012345678\",\n    \"address\": \"Avenue D\",\n    \"email\": \"carlos@email.com\",\n    \"telephone\": \"99006-5412\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By CPF",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/users/90012345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"90012345678"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Carlos\",\n    \"cpf\": \"90012345678\",\n    \"address\": \"Avenue D\",\n    \"email\": \"carlos@email.com\",\n    \"telephone\": \"99876-5432\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/90012345678",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"90012345678"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
+		},
+		{
+			"name": "product-api",
+			"item": [
+				{
+					"name": "Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product By Product ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products/ABC123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"ABC123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Product By Category ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products/category/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"category",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PC\",\n    \"price\": 1389.99,\n    \"description\": \"Desktop PC Windows 10\",\n    \"productIdentifier\": \"JKL123\",\n    \"categoryDTO\": {\n        \"name\": \"Eletronics\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete By Product ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/products/JKL123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"JKL123"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Desktop PC\",\n    \"price\": 2989.99,\n    \"description\": \"Desktop PC Windows 10\",\n    \"productIdentifier\": \"JKL123\",\n    \"categoryDTO\": {\n        \"name\": \"Eletronics\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/products/JKL123",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"products",
+								"JKL123"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "shopping-api",
+			"item": []
 		}
 	]
 }
