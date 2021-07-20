@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.backend.java.user.api.dto.UserApiDTO;
+import com.backend.java.user.api.dto.UserDTO;
 import com.backend.java.user.api.model.User;
 import com.backend.java.user.api.repository.UserRepository;
 
@@ -15,21 +15,21 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public List<UserApiDTO> getAll() {
+	public List<UserDTO> getAll() {
 		List<User> usuarios = userRepository.findAll();
 		return usuarios
 				.stream()
-				.map(UserApiDTO::convert)
+				.map(UserDTO::convert)
 				.collect(Collectors.toList());
 	}
 	
-	public UserApiDTO save(UserApiDTO userApiDTO) {
+	public UserDTO save(UserDTO userApiDTO) {
 		User user = userRepository.save(User.convert(userApiDTO));
 		
-		return UserApiDTO.convert(user);
+		return UserDTO.convert(user);
 	}
 	
-	public UserApiDTO update(UserApiDTO userApiDTO) {
+	public UserDTO update(UserDTO userApiDTO) {
 		User user = userRepository.findByCpf(userApiDTO.getCpf());
 
 		if (user != null) {
@@ -43,10 +43,10 @@ public class UserService {
 			userRepository.save(user);
 		}
 		
-		return UserApiDTO.convert(user);
+		return UserDTO.convert(user);
 	}
 	
-	public void delete(UserApiDTO userApiDTO) {
+	public void delete(UserDTO userApiDTO) {
 		User user = userRepository.findByCpf(userApiDTO.getCpf());
 		
 		if (user != null) {
@@ -54,22 +54,22 @@ public class UserService {
 		}
 	}
 	
-	public UserApiDTO findByCpf(String cpf) {
+	public UserDTO findByCpf(String cpf) {
 		User user = userRepository.findByCpf(cpf);
 		
 		if (user != null) {
-			return UserApiDTO.convert(user);
+			return UserDTO.convert(user);
 		}
 
 		return null;
 	}
 	
-	public List<UserApiDTO> queryByName(String name) {
+	public List<UserDTO> queryByName(String name) {
 		List<User> users = userRepository.queryByNameLike(name);
 		
 		return users
 				.stream()
-				.map(UserApiDTO::convert)
+				.map(UserDTO::convert)
 				.collect(Collectors.toList());
 	}
 	

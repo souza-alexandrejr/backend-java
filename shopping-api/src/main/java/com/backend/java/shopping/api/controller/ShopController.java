@@ -20,6 +20,11 @@ public class ShopController {
 	@Autowired
 	private ShopService shopService;
 	
+	@GetMapping("/")
+	public String getMessage() {
+		return "Shopping API Project";
+	}
+	
 	@GetMapping("/shopping")
 	public List<ShopDTO> getShops() {
 		List<ShopDTO> products = shopService.getAll();

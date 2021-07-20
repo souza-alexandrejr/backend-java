@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.backend.java.user.api.dto.UserApiDTO;
+import com.backend.java.user.api.dto.UserDTO;
 import com.backend.java.user.api.service.UserService;
 
 @RestController
-public class UserApiController {
+public class UserController {
 
 	@Autowired
 	private UserService userService;
@@ -26,30 +26,30 @@ public class UserApiController {
 	}
 
 	@GetMapping("/users")
-	public List<UserApiDTO> getUsers() {
-		List<UserApiDTO> users = userService.getAll();
+	public List<UserDTO> getUsers() {
+		List<UserDTO> users = userService.getAll();
 		return users;
 	}
 
 	@GetMapping("/users/{cpf}")
-	public UserApiDTO getUserByCpf(@PathVariable String cpf) {
+	public UserDTO getUserByCpf(@PathVariable String cpf) {
 		return userService.findByCpf(cpf);
 	}
 
 	@GetMapping("/users/search")
-	public List<UserApiDTO> queryByName(@RequestParam(name = "name", required = true) String name) {
+	public List<UserDTO> queryByName(@RequestParam(name = "name", required = true) String name) {
 		return userService.queryByName(name);
 	}
 
 	@PostMapping("/users")
-	public UserApiDTO insertUser(@RequestBody UserApiDTO userApiDTO) {
+	public UserDTO insertUser(@RequestBody UserDTO userApiDTO) {
 		userApiDTO.setDateRegistration(new Date());
 		return userService.save(userApiDTO);
 	}
 
 	@PutMapping("/users/{cpf}")
-	public UserApiDTO updateUserByCpf(@PathVariable String cpf, @RequestBody UserApiDTO userApiDTO) {
-		UserApiDTO user = userService.findByCpf(cpf);
+	public UserDTO updateUserByCpf(@PathVariable String cpf, @RequestBody UserDTO userApiDTO) {
+		UserDTO user = userService.findByCpf(cpf);
 		
 		if (user != null) {
 			user.setName(userApiDTO.getName());
@@ -67,7 +67,7 @@ public class UserApiController {
 
 	@DeleteMapping("/users/{cpf}")
 	public void removeUserByCpf(@PathVariable String cpf) {
-		UserApiDTO user = userService.findByCpf(cpf);
+		UserDTO user = userService.findByCpf(cpf);
 		
 		if (user != null) {
 			userService.delete(user);

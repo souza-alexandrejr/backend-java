@@ -8,4 +8,6 @@ import com.backend.java.product.api.model.Category;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+	public Category findByName(String name); 
+	
 }

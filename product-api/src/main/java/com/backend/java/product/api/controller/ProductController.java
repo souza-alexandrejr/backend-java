@@ -19,8 +19,10 @@ import com.backend.java.product.api.service.ProductService;
 @RestController
 public class ProductController {
 
-	@Autowired
-	private ProductService productService;
+	@GetMapping("/")
+	public String getMessage() {
+		return "Product API Project";
+	}
 	
 	@GetMapping("/products")
 	public List<ProductDTO> getProducts() {
@@ -54,6 +56,7 @@ public class ProductController {
 			product.setPrice(productDTO.getPrice());
 			product.setProductIdentifier(productDTO.getProductIdentifier());
 			product.setDescription(productDTO.getDescription());
+			product.setCategoryDTO(productDTO.getCategoryDTO());
 			
 			productService.update(product);
 		}
@@ -69,5 +72,8 @@ public class ProductController {
 			productService.delete(product);
 		}
 	}
+	
+	@Autowired
+	private ProductService productService;
 	
 }

@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.backend.java.user.api.dto.UserApiDTO;
+import com.backend.java.user.api.dto.UserDTO;
 
 @Entity
 public class User {
@@ -77,7 +77,7 @@ public class User {
 		this.dateRegistration = dateRegistration;
 	}
 	
-	public static User convert(UserApiDTO userApiDTO) {
+	public static User convert(UserDTO userApiDTO) {
 		
 		User user = new User();
 		

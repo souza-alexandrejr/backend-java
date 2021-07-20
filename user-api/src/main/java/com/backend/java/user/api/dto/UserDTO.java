@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.backend.java.user.api.model.User;
 
-public class UserApiDTO {
+public class UserDTO {
 	
 	private String name;
 	private String cpf;
@@ -61,9 +61,9 @@ public class UserApiDTO {
 		this.dateRegistration = dateRegistration;
 	}
 	
-	public static UserApiDTO convert(User user) {
+	public static UserDTO convert(User user) {
 		
-		UserApiDTO userApiDTO = new UserApiDTO();
+		UserDTO userApiDTO = new UserDTO();
 		
 		userApiDTO.setName(user.getName());
 		userApiDTO.setAddress(user.getAddress());

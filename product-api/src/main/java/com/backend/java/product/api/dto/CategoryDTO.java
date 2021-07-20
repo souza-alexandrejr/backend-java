@@ -6,9 +6,6 @@ import com.backend.java.product.api.model.Category;
 
 public class CategoryDTO {
 
-	@NotNull
-	private String name;
-	
 	public String getName() {
 		return name;
 	}
@@ -24,5 +21,8 @@ public class CategoryDTO {
 		
 		return categoryDTO;
 	}
+	
+	@NotNull
+	private String name;
 	
 }
