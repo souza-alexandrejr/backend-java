@@ -1,4 +1,4 @@
-package com.backend.java.shopping.client.exception.advice;
+package com.backend.java.shopping.api.exception.advice;
 
 import java.util.Date;
 
