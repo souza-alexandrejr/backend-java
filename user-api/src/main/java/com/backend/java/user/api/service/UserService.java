@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.backend.java.shopping.client.exception.UserNotFoundException;
 import com.backend.java.user.api.dto.UserDTO;
 import com.backend.java.user.api.model.User;
 import com.backend.java.user.api.repository.UserRepository;
@@ -57,8 +59,7 @@ public class UserService {
 		if (user != null) {
 			return UserDTO.convert(user);
 		}
-
-		return null;
+		throw new UserNotFoundException();
 	}
 	
 	public List<UserDTO> queryByName(String name) {
