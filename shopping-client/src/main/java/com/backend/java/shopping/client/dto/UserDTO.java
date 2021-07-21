@@ -20,6 +20,10 @@ public class UserDTO {
 		return email;
 	}
 	
+	public String getKey() {
+		return key;
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -43,6 +47,10 @@ public class UserDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -56,6 +64,7 @@ public class UserDTO {
 	private String cpf;
 	private Date dateRegistration;
 	private String email;
+	private String key;
 	private String name;
 	private String telephone;
 	

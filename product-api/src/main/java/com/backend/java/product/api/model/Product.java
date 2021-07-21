@@ -9,7 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.backend.java.shopping.client.dto.ProductDTO;
 
-@Entity(name="product")
+@Entity(name = "product")
 public class Product {
 
 	public Category getCategory() {

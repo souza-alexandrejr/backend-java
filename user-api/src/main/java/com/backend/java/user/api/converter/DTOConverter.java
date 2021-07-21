@@ -12,6 +12,7 @@ public class DTOConverter {
 		userApiDTO.setAddress(user.getAddress());
 		userApiDTO.setCpf(user.getCpf());
 		userApiDTO.setEmail(user.getEmail());
+		userApiDTO.setKey(user.getKey());
 		userApiDTO.setTelephone(user.getTelephone());
 		userApiDTO.setDateRegistration(user.getDateRegistration());
 		

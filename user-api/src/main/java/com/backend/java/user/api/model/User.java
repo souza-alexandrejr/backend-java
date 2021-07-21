@@ -8,7 +8,7 @@ import javax.persistence.Id;
 
 import com.backend.java.shopping.client.dto.UserDTO;
 
-@Entity
+@Entity(name = "user")
 public class User {
 	
 	public String getAddress() {
@@ -31,6 +31,10 @@ public class User {
 		return id;
 	}
 	
+	public String getKey() {
+		return key;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -58,6 +62,10 @@ public class User {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	public void setKey(String key) {
+		this.key = key;
+	}
 
 	public void setName(String name) {
 		this.name = name;
@@ -74,6 +82,7 @@ public class User {
 		user.setAddress(userApiDTO.getAddress());
 		user.setCpf(userApiDTO.getCpf());
 		user.setEmail(userApiDTO.getEmail());
+		user.setKey(userApiDTO.getKey());
 		user.setTelephone(userApiDTO.getTelephone());
 		user.setDateRegistration(userApiDTO.getDateRegistration());
 		
@@ -89,6 +98,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	private String key;
 	private String name;
 	private String telephone;
 	

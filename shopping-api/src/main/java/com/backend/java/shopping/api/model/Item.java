@@ -4,7 +4,6 @@ import javax.persistence.Embeddable;
 
 import com.backend.java.shopping.client.dto.ItemDTO;
 
-
 @Embeddable
 public class Item {
 

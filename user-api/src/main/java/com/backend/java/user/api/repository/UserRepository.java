@@ -8,7 +8,7 @@ import com.backend.java.user.api.model.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-	public User findByCpf(String cpf);
+	public User findByCpfAndKey(String cpf, String key);
 	public List<User> queryByNameLike(String name);
 	
 }

@@ -30,8 +30,10 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{cpf}")
-	public UserDTO getUserByCpf(@PathVariable String cpf) {
-		return userService.findByCpf(cpf);
+	public UserDTO getUserByCpf(
+			@RequestParam(name="key", required = true) String key,
+			@PathVariable String cpf) {
+		return userService.findByCpfAndKey(cpf, key);
 	}
 
 	@GetMapping("/users/search")

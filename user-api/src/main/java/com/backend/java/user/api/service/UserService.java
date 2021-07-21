@@ -2,6 +2,7 @@ package com.backend.java.user.api.service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,15 @@ public class UserService {
 	}
 	
 	public UserDTO save(UserDTO userApiDTO) {
+		userApiDTO.setKey(UUID.randomUUID().toString());
+		
 		User user = userRepository.save(User.convert(userApiDTO));
 		
 		return DTOConverter.convert(user);
 	}
 	
 	public UserDTO update(UserDTO userApiDTO) {
-		User user = userRepository.findByCpf(userApiDTO.getCpf());
+		User user = userRepository.findByCpfAndKey(userApiDTO.getCpf(), userApiDTO.getKey());
 
 		if (user != null) {
 			user.setName(userApiDTO.getName());
@@ -47,15 +50,15 @@ public class UserService {
 	}
 	
 	public void delete(UserDTO userApiDTO) {
-		User user = userRepository.findByCpf(userApiDTO.getCpf());
+		User user = userRepository.findByCpfAndKey(userApiDTO.getCpf(), userApiDTO.getKey());
 		
 		if (user != null) {
 			userRepository.delete(user);
 		}
 	}
 	
-	public UserDTO findByCpf(String cpf) {
-		User user = userRepository.findByCpf(cpf);
+	public UserDTO findByCpfAndKey(String cpf, String key) {
+		User user = userRepository.findByCpfAndKey(cpf, key);
 		
 		if (user != null) {
 			return DTOConverter.convert(user);
