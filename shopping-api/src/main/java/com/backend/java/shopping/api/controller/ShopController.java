@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -73,7 +74,9 @@ public class ShopController {
 	}
 	
 	@PostMapping("/shopping")
-	public ShopDTO insertShop(@Valid @RequestBody ShopDTO shopDTO) {
+	public ShopDTO insertShop(
+			@RequestHeader(name = "key", required = true) String key,
+			@Valid @RequestBody ShopDTO shopDTO) {
 		return shopService.save(shopDTO);
 	}
 	
