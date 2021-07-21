@@ -77,7 +77,7 @@ public class ShopController {
 	public ShopDTO insertShop(
 			@RequestHeader(name = "key", required = true) String key,
 			@Valid @RequestBody ShopDTO shopDTO) {
-		return shopService.save(shopDTO);
+		return shopService.save(shopDTO, key);
 	}
 	
 	@PutMapping("/shopping/{id}")
