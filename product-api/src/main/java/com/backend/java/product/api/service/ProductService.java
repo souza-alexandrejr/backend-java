@@ -12,6 +12,8 @@ import com.backend.java.product.api.model.Category;
 import com.backend.java.product.api.model.Product;
 import com.backend.java.product.api.repository.CategoryRepository;
 import com.backend.java.product.api.repository.ProductRepository;
+import com.backend.java.shopping.client.exception.CategoryNotFoundException;
+import com.backend.java.shopping.client.exception.ProductNotFoundException;
 
 @Service
 public class ProductService {
@@ -38,8 +40,7 @@ public class ProductService {
 		if (product != null) {
 			return DTOConverter.convert(product);
 		}
-		
-		return null;
+		throw new ProductNotFoundException();
 	}
 	
 	public ProductDTO save(ProductDTO productDTO) {
@@ -49,8 +50,7 @@ public class ProductService {
 			Product product = productRepository.save(Product.convert(productDTO, category.getId()));
 			return DTOConverter.convert(product);
 		}
-
-		return null;
+		throw new CategoryNotFoundException();
 	}
 	
 	public ProductDTO update(ProductDTO productDTO) {
@@ -71,12 +71,13 @@ public class ProductService {
 		return DTOConverter.convert(product);
 	}
 	
-	public void delete(ProductDTO productDTO) {
+	public ProductDTO delete(ProductDTO productDTO) {
 		Product product = productRepository.findByProductIdentifier(productDTO.getProductIdentifier());
 		
 		if (product != null) {
 			productRepository.delete(product);
 		}
+		throw new ProductNotFoundException();
 	}
 	
 	@Autowired

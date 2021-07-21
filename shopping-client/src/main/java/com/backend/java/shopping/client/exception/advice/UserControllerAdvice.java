@@ -11,12 +11,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import com.backend.java.shopping.client.dto.ErrorDTO;
 import com.backend.java.shopping.client.exception.UserNotFoundException;
 
-@ControllerAdvice(
-	basePackages = {
-		"com.backend.java.user.api.controller", 
-		"com.backend.java.product.api.controller", 
-		"com.backend.java.shopping.api.controller"
-})
+@ControllerAdvice(basePackages = "com.backend.java.user.api.controller")
 public class UserControllerAdvice {
 	
 	@ResponseBody
