@@ -30,6 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{cpf}")
+//	@GetMapping("/users/{cpf}?key={key}")
 	public UserDTO getUserByCpf(
 			@RequestParam(name="key", required = true) String key,
 			@PathVariable String cpf) {
