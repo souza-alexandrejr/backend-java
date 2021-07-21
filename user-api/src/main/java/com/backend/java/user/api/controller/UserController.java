@@ -48,8 +48,10 @@ public class UserController {
 	}
 
 	@PutMapping("/users/{cpf}")
-	public UserDTO updateUserByCpf(@PathVariable String cpf, @RequestBody UserDTO userApiDTO) {
-		UserDTO user = userService.findByCpf(cpf);
+	public UserDTO updateUserByCpf(
+			@RequestParam(name="key", required = true) String key,
+			@PathVariable String cpf, @RequestBody UserDTO userApiDTO) {
+		UserDTO user = userService.findByCpfAndKey(cpf, key);
 		
 		if (user != null) {
 			user.setName(userApiDTO.getName());
@@ -66,8 +68,10 @@ public class UserController {
 	}
 
 	@DeleteMapping("/users/{cpf}")
-	public void removeUserByCpf(@PathVariable String cpf) {
-		UserDTO user = userService.findByCpf(cpf);
+	public void removeUserByCpf(
+			@RequestParam(name="key", required = true) String key,
+			@PathVariable String cpf) {
+		UserDTO user = userService.findByCpfAndKey(cpf, key);
 		
 		if (user != null) {
 			userService.delete(user);
