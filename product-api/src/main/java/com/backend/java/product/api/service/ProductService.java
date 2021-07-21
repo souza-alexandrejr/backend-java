@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.java.product.api.converter.DTOConverter;
 import com.backend.java.product.api.dto.ProductDTO;
 import com.backend.java.product.api.model.Category;
 import com.backend.java.product.api.model.Product;
@@ -19,7 +20,7 @@ public class ProductService {
 		List<Product> products = productRepository.findAll();
 		return products
 				.stream()
-				.map(ProductDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
@@ -27,7 +28,7 @@ public class ProductService {
 		List<Product> products = productRepository.getProductByCategoryId(categoryId);
 		return products
 				.stream()
-				.map(ProductDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
@@ -35,7 +36,7 @@ public class ProductService {
 		Product product = productRepository.findByProductIdentifier(productIdentifier);
 		
 		if (product != null) {
-			return ProductDTO.convert(product);
+			return DTOConverter.convert(product);
 		}
 		
 		return null;
@@ -46,7 +47,7 @@ public class ProductService {
 		
 		if (category != null) {
 			Product product = productRepository.save(Product.convert(productDTO, category.getId()));
-			return ProductDTO.convert(product);
+			return DTOConverter.convert(product);
 		}
 
 		return null;
@@ -67,7 +68,7 @@ public class ProductService {
 			productRepository.save(product);
 		}
 		
-		return ProductDTO.convert(product);
+		return DTOConverter.convert(product);
 	}
 	
 	public void delete(ProductDTO productDTO) {

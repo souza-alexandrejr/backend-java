@@ -1,13 +1,7 @@
-package com.backend.java.shopping.api.dto;
+package com.backend.java.shopping.client.dto;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-import com.backend.java.shopping.api.model.Shop;
 
 public class ShopDTO {
 
@@ -51,34 +45,10 @@ public class ShopDTO {
 		this.total = total;
 	}
 
-	public static ShopDTO convert(Shop shop) {
-		ShopDTO shopDTO = new ShopDTO();
-		
-		shopDTO.setDate(shop.getDate());
-		shopDTO.setId(shop.getId());
-		shopDTO.setItems(shop.getItems()
-							.stream()
-							.map(ItemDTO::convert)
-							.collect(Collectors.toList()));
-		shopDTO.setUserIdentifier(shop.getUserIdentifier());
-		shopDTO.setTotal(shop.getTotal());
-		
-		return shopDTO;
-	}
-	
-	@NotNull
 	private Date date;
-	
-	@NotNull
 	private long id;
-	
-	@NotNull
 	private List<ItemDTO> items;
-	
-	@NotBlank
 	private String userIdentifier;
-	
-	@NotNull
 	private float total;
 
 }

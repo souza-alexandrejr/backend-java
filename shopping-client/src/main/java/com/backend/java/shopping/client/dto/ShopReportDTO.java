@@ -1,4 +1,4 @@
-package com.backend.java.shopping.api.dto;
+package com.backend.java.shopping.client.dto;
 
 public class ShopReportDTO {
 	
