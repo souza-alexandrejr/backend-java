@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.backend.java.product.api.converter.DTOConverter;
-import com.backend.java.product.api.dto.ProductDTO;
 import com.backend.java.product.api.model.Category;
 import com.backend.java.product.api.model.Product;
 import com.backend.java.product.api.repository.CategoryRepository;
 import com.backend.java.product.api.repository.ProductRepository;
+import com.backend.java.shopping.client.dto.ProductDTO;
 import com.backend.java.shopping.client.exception.CategoryNotFoundException;
 import com.backend.java.shopping.client.exception.ProductNotFoundException;
 

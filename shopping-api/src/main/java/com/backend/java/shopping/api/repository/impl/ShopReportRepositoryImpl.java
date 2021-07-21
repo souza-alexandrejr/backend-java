@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.backend.java.shopping.api.dto.ShopReportDTO;
 import com.backend.java.shopping.api.model.Shop;
 import com.backend.java.shopping.api.repository.ShopReportRepository;
+import com.backend.java.shopping.client.dto.ShopReportDTO;
 
 public class ShopReportRepositoryImpl implements ShopReportRepository {
 

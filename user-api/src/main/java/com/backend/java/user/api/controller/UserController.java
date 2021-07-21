@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.backend.java.user.api.dto.UserDTO;
+
+import com.backend.java.shopping.client.dto.UserDTO;
 import com.backend.java.user.api.service.UserService;
 
 @RestController

@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.backend.java.product.api.dto.ProductDTO;
+import com.backend.java.shopping.client.dto.ProductDTO;
 
 @Entity(name="product")
 public class Product {

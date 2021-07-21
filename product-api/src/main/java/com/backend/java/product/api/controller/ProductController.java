@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.backend.java.product.api.dto.ProductDTO;
 import com.backend.java.product.api.service.ProductService;
+import com.backend.java.shopping.client.dto.ProductDTO;
 
 @RestController
 public class ProductController {

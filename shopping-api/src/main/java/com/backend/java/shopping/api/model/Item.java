@@ -2,7 +2,8 @@ package com.backend.java.shopping.api.model;
 
 import javax.persistence.Embeddable;
 
-import com.backend.java.shopping.api.dto.ItemDTO;
+import com.backend.java.shopping.client.dto.ItemDTO;
+
 
 @Embeddable
 public class Item {

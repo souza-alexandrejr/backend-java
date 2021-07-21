@@ -7,10 +7,11 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.java.shopping.api.dto.ShopDTO;
-import com.backend.java.shopping.api.dto.ShopReportDTO;
+import com.backend.java.shopping.api.converter.DTOConverter;
 import com.backend.java.shopping.api.model.Shop;
 import com.backend.java.shopping.api.repository.ShopReportRepository;
+import com.backend.java.shopping.client.dto.ShopDTO;
+import com.backend.java.shopping.client.dto.ShopReportDTO;
 
 @Service
 public class ShopReportService {
@@ -19,7 +20,7 @@ public class ShopReportService {
 		List<Shop> shops = shopReportRepository.getShopByFilters(startDate, endDate, minimumValue);
 		return shops
 				.stream()
-				.map(ShopDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	

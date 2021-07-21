@@ -6,8 +6,9 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.java.shopping.client.dto.UserDTO;
 import com.backend.java.shopping.client.exception.UserNotFoundException;
-import com.backend.java.user.api.dto.UserDTO;
+import com.backend.java.user.api.converter.DTOConverter;
 import com.backend.java.user.api.model.User;
 import com.backend.java.user.api.repository.UserRepository;
 
@@ -18,14 +19,14 @@ public class UserService {
 		List<User> usuarios = userRepository.findAll();
 		return usuarios
 				.stream()
-				.map(UserDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
 	public UserDTO save(UserDTO userApiDTO) {
 		User user = userRepository.save(User.convert(userApiDTO));
 		
-		return UserDTO.convert(user);
+		return DTOConverter.convert(user);
 	}
 	
 	public UserDTO update(UserDTO userApiDTO) {
@@ -42,7 +43,7 @@ public class UserService {
 			userRepository.save(user);
 		}
 		
-		return UserDTO.convert(user);
+		return DTOConverter.convert(user);
 	}
 	
 	public void delete(UserDTO userApiDTO) {
@@ -57,7 +58,7 @@ public class UserService {
 		User user = userRepository.findByCpf(cpf);
 		
 		if (user != null) {
-			return UserDTO.convert(user);
+			return DTOConverter.convert(user);
 		}
 		throw new UserNotFoundException();
 	}
@@ -67,7 +68,7 @@ public class UserService {
 		
 		return users
 				.stream()
-				.map(UserDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	

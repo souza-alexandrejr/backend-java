@@ -1,9 +1,9 @@
 package com.backend.java.product.api.converter;
 
-import com.backend.java.product.api.dto.CategoryDTO;
-import com.backend.java.product.api.dto.ProductDTO;
 import com.backend.java.product.api.model.Category;
 import com.backend.java.product.api.model.Product;
+import com.backend.java.shopping.client.dto.CategoryDTO;
+import com.backend.java.shopping.client.dto.ProductDTO;
 
 public class DTOConverter {
 	

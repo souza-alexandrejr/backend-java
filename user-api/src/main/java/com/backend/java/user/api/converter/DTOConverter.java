@@ -1,6 +1,6 @@
 package com.backend.java.user.api.converter;
 
-import com.backend.java.user.api.dto.UserDTO;
+import com.backend.java.shopping.client.dto.UserDTO;
 import com.backend.java.user.api.model.User;
 
 public class DTOConverter {

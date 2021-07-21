@@ -8,12 +8,13 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.backend.java.shopping.api.dto.ItemDTO;
-import com.backend.java.shopping.api.dto.ShopDTO;
+import com.backend.java.shopping.api.converter.DTOConverter;
 import com.backend.java.shopping.api.model.Item;
 import com.backend.java.shopping.api.model.Shop;
 import com.backend.java.shopping.api.repository.ShopRepository;
+import com.backend.java.shopping.client.dto.ItemDTO;
 import com.backend.java.shopping.client.dto.ProductDTO;
+import com.backend.java.shopping.client.dto.ShopDTO;
 
 @Service
 public class ShopService {
@@ -22,7 +23,7 @@ public class ShopService {
 		List<Shop> shops = shopRepository.findAll();
 		return shops
 				.stream()
-				.map(ShopDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
@@ -30,7 +31,7 @@ public class ShopService {
 		List<Shop> shops = shopRepository.findAllByUserIdentifier(userIdentifier);
 		return shops
 				.stream()
-				.map(ShopDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
@@ -38,7 +39,7 @@ public class ShopService {
 		List<Shop> shops = shopRepository.findAllByDateGreaterThan(shopDTO.getDate());
 		return shops
 				.stream()
-				.map(ShopDTO::convert)
+				.map(DTOConverter::convert)
 				.collect(Collectors.toList());
 	}
 	
@@ -46,7 +47,7 @@ public class ShopService {
 		Optional<Shop> shop = shopRepository.findById(productId);
 		
 		if (shop.isPresent()) {
-			return ShopDTO.convert(shop.get());
+			return DTOConverter.convert(shop.get());
 		}
 		
 		return null;
@@ -72,7 +73,7 @@ public class ShopService {
 		shop.setDate(new Date());
 		
 		shop = shopRepository.save(shop);
-		return ShopDTO.convert(shop);
+		return DTOConverter.convert(shop);
 	}
 	
 	public ShopDTO update(ShopDTO shopDTO) {
@@ -97,7 +98,7 @@ public class ShopService {
 			shopRepository.save(shop);
 		}
 		
-		return ShopDTO.convert(shop);
+		return DTOConverter.convert(shop);
 	}
 	
 	public void delete(ShopDTO shopDTO) {

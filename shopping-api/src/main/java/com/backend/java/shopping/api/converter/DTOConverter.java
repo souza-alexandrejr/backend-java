@@ -2,10 +2,10 @@ package com.backend.java.shopping.api.converter;
 
 import java.util.stream.Collectors;
 
-import com.backend.java.shopping.api.dto.ItemDTO;
-import com.backend.java.shopping.api.dto.ShopDTO;
 import com.backend.java.shopping.api.model.Item;
 import com.backend.java.shopping.api.model.Shop;
+import com.backend.java.shopping.client.dto.ItemDTO;
+import com.backend.java.shopping.client.dto.ShopDTO;
 
 public class DTOConverter {
 
@@ -25,7 +25,7 @@ public class DTOConverter {
 		shopDTO.setId(shop.getId());
 		shopDTO.setItems(shop.getItems()
 							.stream()
-							.map(ItemDTO::convert)
+							.map(DTOConverter::convert)
 							.collect(Collectors.toList()));
 		shopDTO.setUserIdentifier(shop.getUserIdentifier());
 		shopDTO.setTotal(shop.getTotal());
