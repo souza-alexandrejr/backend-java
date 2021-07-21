@@ -8,10 +8,12 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.backend.java.shopping.api.dto.ItemDTO;
 import com.backend.java.shopping.api.dto.ShopDTO;
-import com.backend.java.shopping.api.model.Shop;
 import com.backend.java.shopping.api.model.Item;
+import com.backend.java.shopping.api.model.Shop;
 import com.backend.java.shopping.api.repository.ShopRepository;
+import com.backend.java.shopping.client.dto.ProductDTO;
 
 @Service
 public class ShopService {
@@ -51,6 +53,15 @@ public class ShopService {
 	}
 	
 	public ShopDTO save(ShopDTO shopDTO) {
+		
+		if (userService.getUserByCpf(shopDTO.getUserIdentifier()) == null) {
+			return null;
+		}
+		
+		if (!validateProducts(shopDTO.getItems())) {
+			return null;
+		}
+		
 		shopDTO.setTotal(shopDTO
 							.getItems()
 							.stream()
@@ -97,6 +108,22 @@ public class ShopService {
 		}
 	}
 	
+	public boolean validateProducts(List<ItemDTO> items) {
+		for (ItemDTO item : items) {
+			ProductDTO productDTO = productService.getProductByIdentifier(item.getProductIdentifier());
+			if (productDTO == null) { return false;	} 
+			item.setPrice(productDTO.getPrice());
+		}
+		return true;
+	}
+	
 	@Autowired
 	private ShopRepository shopRepository;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private UserService userService;
+	
 }
