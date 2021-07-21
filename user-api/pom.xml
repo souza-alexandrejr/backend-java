@@ -47,7 +47,13 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>		
+		</dependency>
+		
+		<dependency>
+			<groupId>com.backend.java</groupId>
+			<artifactId>shopping-client</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
